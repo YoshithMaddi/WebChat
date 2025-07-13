@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import assets, { userDummyData } from '../assets/assets';
 
 const Sidebar = ({selectedUser,setselectedUser}) => {
-    const navigate=useNavigate();
+  const navigate=useNavigate();
   return (
     <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${selectedUser? 'max-md:hidden':''}`}>
        <div className='pb-5'>
@@ -17,8 +17,7 @@ const Sidebar = ({selectedUser,setselectedUser}) => {
                     <hr className='my-2 border-t border-gray-500'/>
                     <p className='cursor-pointer text-sm'>logout</p>
                 </div>
-            </div>
-            
+            </div>  
          </div>
          <div className='bg-[#282142] rounded-full flex items-center gap-2 py-3 px-4 mt-5' >
             <img src={assets.search_icon} alt="search" className='w-3' />
@@ -39,10 +38,7 @@ const Sidebar = ({selectedUser,setselectedUser}) => {
                     index<3? <span className='text-green-400 text-xs'>Online</span>:
                     <span className='text-neutral-400 text-xs'>offline</span>
                   }
-                </div>
-                {
-                  index>2 && <p className='absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50'>{index}</p>
-                }
+                </div>{index>2 && <p className='absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50'>{index}</p>}
               </div>
             ))}
         </div>
