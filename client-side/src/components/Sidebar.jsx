@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import assets, { userDummyData } from '../assets/assets';
 
 const Sidebar = ({selectedUser,setselectedUser}) => {
   const navigate=useNavigate();
+  const [showMenu, setShowMenu] = useState(false); 
   return (
     <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${selectedUser? 'max-md:hidden':''}`}>
        <div className='pb-5'>
@@ -11,9 +12,12 @@ const Sidebar = ({selectedUser,setselectedUser}) => {
             <img src={assets.logo} alt="logo" className='max-w-40' />
             {/* <p>Logo</p> */}
             <div className='relative py-2 group'>
-                <img src={assets.menu_icon} alt="logo" className='max-h-5 cursor-pointer' />
-                <div className='absolute top-full right-0 z-20 w-32 text-gray-100 hidden group-hover:block'>
-                    <p onClick={()=>navigate('/profile')} className='cursor-pointer text-sm'>Edit profile</p>
+                <img onClick={() => setShowMenu(!showMenu)} src={assets.menu_icon} alt="logo" className='max-h-5 cursor-pointer' />
+                <div  className={`absolute top-full right-0 z-20 w-32 text-gray-100 ${showMenu? 'block':'hidden' }`}>
+                    <p onClick={()=>{
+                      navigate('/profile');
+                      setShowMenu(false);
+                      }} className='cursor-pointer text-sm'>Edit profile</p>
                     <hr className='my-2 border-t border-gray-500'/>
                     <p className='cursor-pointer text-sm'>logout</p>
                 </div>

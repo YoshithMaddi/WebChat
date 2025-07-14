@@ -34,47 +34,21 @@ const ProfilePage = () => {
           <h3 className='text-lg'>Profile details</h3>
 
           <label htmlFor="avatar" className='flex items-center gap-3 cursor-pointer'>
-            <input
-              onChange={(e) => setSelectedImage(e.target.files[0])}
-              type="file"
-              id='avatar'
-              accept='.png, .jpeg, .jpg'
-              className='hidden'
+            <input onChange={(e) => setSelectedImage(e.target.files[0])} type="file" id='avatar' accept='.png, .jpeg, .jpg' className='hidden'
             />
-            <img
-              src={selectedImage ? URL.createObjectURL(selectedImage) : assets.avatar_icon}
-              alt="Profile"
-              className={`w-12 h-12 object-cover ${selectedImage && 'rounded-full'}`}
-            />
+            <img src={selectedImage ? URL.createObjectURL(selectedImage) : assets.avatar_icon} alt="Profile" className={`w-12 h-12 object-cover ${selectedImage && 'rounded-full'}`}/>
             Upload profile image
           </label>
 
-          <input
-            onChange={(e) => SetName(e.target.value)}
-            value={name}
-            type="text"
-            required
-            placeholder='Your name'
-            className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500'
-          />
+          <input onChange={(e) => SetName(e.target.value)} value={name}
+            type="text" required placeholder='Your name' className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500'/>
 
-          <textarea
-            onChange={(e) => Setbio(e.target.value)}
-            value={bio}
-            placeholder='Write profile bio'
-            required
-            className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500 min-h-[4rem]'
-            rows={3} // changed to integer
+          <textarea onChange={(e) => Setbio(e.target.value)} value={bio} placeholder='Write profile bio' required className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500 min-h-[4rem]' rows={3} // changed to int
           ></textarea>
 
-          <button
-            type='submit'
-            className='bg-gradient-to-r from-purple-400 to-violet-600 text-white p-2 rounded-full text-lg cursor-pointer'
-          >
-            Save
-          </button>
+          <button type='submit' className='bg-gradient-to-r from-purple-400 to-violet-600 text-white p-2 rounded-full text-lg cursor-pointer'>Save</button>
         </form>
-        <img src={assets.logo_icon} alt="Logo" className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10${selectedImage && 'rounded-full'} `}/>
+        <img src={ authUser?.profilePic ||assets.logo_icon} alt="Logo" className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10${selectedImage && 'rounded-full'} `}/>
       </div>
     </div>
   )
