@@ -22,6 +22,7 @@ export const userSocketMap={}; // userid:socketId
 
 
 //socket.io connecton handler
+/*
 io.on("connection",()=>{
     const userId=socket.handshake.query.userId;
     console.log("User connected",userId);
@@ -32,6 +33,26 @@ io.on("connection",()=>{
     delete userSocketMap[userId];
     io.emit("getOnlineUsers",Object.keys(userSocketMap))
 })
+its my code but has some errors here
+*/
+
+io.on("connection",(socket)=>{
+    const userId = socket.handshake.query.userId;
+    console.log("user connected:", userId);
+    if(userId){
+        userSocketMap[userId]=socket.id;
+    }
+    // Emit the list of online users to all clients
+    io.emit("getOnlineUsers",Object.keys(userSocketMap));
+    //handle user disconnect
+    socket.on("disconnect",()=>{
+        console.log("user disconnected:", userId);
+        delete userSocketMap[userId];
+        io.emit("getOnlineUsers", Object.keys(userSocketMap));
+    });
+});
+// optimses io.on code with no errors
+
 
 
 //middleware 

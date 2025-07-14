@@ -8,8 +8,8 @@ const ProfilePage = () => {
 
   const [selectedImage, setSelectedImage] = useState(null)
   const navigate = useNavigate()
-  const [name, SetName] = useState("Yoshith")
-  const [bio, Setbio] = useState("Hi hello")
+  const [name, SetName] = useState(authUser.fullName)
+  const [bio, Setbio] = useState(authUser.bio)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ const ProfilePage = () => {
             Save
           </button>
         </form>
-        <img src={assets.logo_icon} alt="Logo" className='max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10'/>
+        <img src={assets.logo_icon} alt="Logo" className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10${selectedImage && 'rounded-full'} `}/>
       </div>
     </div>
   )

@@ -50,9 +50,13 @@ export const login = async(req,res)=>{
 }
 
 //contr to check is user is authenatic
-export const checkAuth=(req,res)=>{
-    res.json({success:true,user:req.user});
-}
+export const checkAuth = (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+    res.json({ success: true, user: req.user });
+};
+
 
 //controller to update user profile details
 export const updateProfile=async(req,res)=>{
